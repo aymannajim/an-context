@@ -1,137 +1,90 @@
-# nh-context
-Simple, minimalistic event firing context menu for RedM and FiveM
+## Description
+Same nh-context but with the ability to trigger client and server events, some minor ui redesign and made compatible with [[ESX] Gangs System]
 
-# Information
-I really liked the look of these dark themed context menus but haven't seen a lot released, now I'm sure mine isn't the best it's one of my first few public scripts and I feel it's really user friendly, I hope you all find a use for this and enjoy it!
+**So basically, I added a third argument in the main script event ( nh-context:sendMenu ), when this is set to false or not called, it makes the script call the events  on the client side ( just like the original nh-context ), but when  set to true, it makes the script triggers the events on the server-side.**
 
+## Screenshots
 
-# Setup
-It's pretty simple, once you drop the nh-context resource into your resources folder just make sure you put
+![ShowCase](https://user-images.githubusercontent.com/36258300/174438415-542ddb0e-e5fe-4c22-b9f2-f7363c934598.png)
+![ShowCase](https://user-images.githubusercontent.com/36258300/174438397-9bb107e9-3b44-4092-acc5-798fe2028563.png)
+![ShowCase](https://user-images.githubusercontent.com/36258300/174438424-abbef8c0-2504-4dce-9f02-9ecbad7297d7.png)
 
-ensure nh-context
+## Setup
+1. Drop the nh-context resource into your resources folder
+2. add this line in your server.cfg:
+`ensure nh-context`
 
-in your server.cfg. 
+## Quick example on how it works:
 
-
-# Usage
-
-https://streamable.com/j4wkwi
-
-Here is a base menu to show how it works, this is a kind of a "figure it out" type of situation but I hope my examples help, the code below is what made the video above!
+> **Triggering client side events**
 ```
-RegisterCommand("testcontext", function()
-    TriggerEvent("nh-context:testmenu")
+RegisterCommand("testclientside", function(source, args, raw)
+    TriggerEvent("nh-context:testMenu")
 end)
 
-RegisterNetEvent("nh-context:testMenu", function()
-    TriggerEvent("nh-context:createMenu", {
+RegisterNetEvent('nh-context:testMenu', function()
+    TriggerEvent('nh-context:sendMenu', {
         {
+            id = 1,
             header = "Main Title",
+            txt = ""
         },
         {
+            id = 2,
             header = "Sub Menu Button",
-            context = "This goes to a sub menu",
-            event = "nh-context:testMenu2",
-            image = "https://i.imgur.com/xO1mXkX.png",
-            args = {1,2}
-        }
-    })
+            txt = "This goes to a sub menu",
+            params = {
+                event = "nh-context:testMenu2",
+                args = {
+                    number = 1,
+                    id = 2
+                }
+            }
+        },
+    }, false)
+end)
+```
+
+```
+-- This is a client side event
+RegisterNetEvent('nh-context:testMenu2', function(data)
+    print('THIS IS PRINTED ON THE CLIENT SIDE!!!')
+end)
+```
+
+> **Triggering server side events**
+
+```
+RegisterCommand("testclientside", function(source, args, raw)
+    TriggerEvent("nh-context:testMenu")
 end)
 
-RegisterNetEvent('nh-context:testMenu2', function(id, number)
-    TriggerEvent('nh-context:createMenu', {
+RegisterNetEvent('nh-context:testMenu', function()
+    TriggerEvent('nh-context:sendMenu', {
         {
-            header = "< Go Back",
-            event = "nh-context:testMenu"
+            id = 1,
+            header = "Main Title",
+            txt = ""
         },
         {
-            header = "Number: " .. number,
-            context = "ID: " .. id
+            id = 2,
+            header = "Sub Menu Button",
+            txt = "This goes to a sub menu",
+            params = {
+                event = "nh-context:testMenu2",
+                args = {
+                    number = 1,
+                    id = 2
+                }
+            }
         },
-    })
+    }, true)
 end)
-
 ```
 
-Note: Anything not marked "Required" below you don't even have to include if you don't want to.
 ```
-    {
-        header = "The Header, whatever you want to put", -- Required
-        context = "The base of the text in the button",
-        footer = "The bottom text on the button",
-        disabled = "pass "true" if you want to disable this button from being pressed, and will change to a disabled color",
-        subMenu = "pass "true" if you want to have a arrow showing that this button will access another menu",
-        server = "pass "true" if you want the button to trigger a server event",
-        image = "add an image url here and itll show off to the left side when you hover over this button, example below",
-        event = "the event you actually want to trigger, remember if you set it server = true this will pass to the server side",
-        args = { -- These are the arguments you send with the event
-            table,
-            integer,
-            boolean -- the order you put these in will be the order they kick out thru the receiving event function(table, integer, boolean)
-        }
-    }
+-- This is a server side event
+RegisterServerEvent('nh-context:testMenu2', function(data)
+    print('THIS IS PRINTED ON THE SERVER CONSOLE!!!')
+end)
 ```
-
-[Image Usage Example](https://lithi.io/file/uS4x.png)
-
-
-Example of using a table to build a menu:
-
-```
-
-local menu = {
-    {
-        header = "Title Here"
-    }
-}
-
-for k, v in pairs(randomTable) do
-    table.insert(menu,  {
-        header = "Random Title " .. key .. " data: " .. k,
-        context = "Random context " .. key .. " data: " .. v,
-        server = true -- this passes the event below to the server instead of client
-        image = "show a cool image ending in jpg, png, gif, etc"
-        event = "this fires some event"
-    }
-end
-
-TriggerEvent('nh-context:createMenu', menu)
-
-```
-
-Exmaple of using the Function to build an asyncronous menu
-
-```
-    local accept = exports["nh-context"]:ContextMenu({
-        {
-            header = "Pick One",
-        },
-        {
-            header = "Number: " .. number,
-            context = "ID: " .. id
-            args = {"1"}
-        },
-        {
-            header = "Number: " .. number,
-            context = "ID: " .. id
-            args = {"2"}
-        },
-    })
-    if accept ~= nil then
-        if accept == "1" then
-            -- do something
-        elseif accept == "2" then
-            -- do something else
-        end
-    end
-
-```
-
-# Known Bugs
-No known bugs
-
-# Support
-Feel free to report any issues you have in the GitHub [Issues](https://github.com/nerohiro/nh-context/issues)
-
-if you wish to add something to it, do a pull request on the github [Pull Requests](https://github.com/nerohiro/nh-context/pulls)
-
