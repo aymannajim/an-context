@@ -1,5 +1,5 @@
 ## Description
-Same nh-context but with the ability to trigger client and server events, some minor ui redesign and made compatible with [[ESX] Gangs System]
+Same nh-context but with the ability to trigger client and server events, some minor ui redesign and made compatible with [ESX] Gangs System
 
 **So basically, I added a third argument in the main script event ( nh-context:sendMenu ), when this is set to false or not called, it makes the script call the events  on the client side ( just like the original nh-context ), but when  set to true, it makes the script triggers the events on the server-side.**
 
