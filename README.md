@@ -89,4 +89,4 @@ RegisterServerEvent('nh-context:testMenu2', function(data)
 end)
 ```
 
-# ⚠️ This was forked from an earlier version of nerohiro's nh-context so it won't be compatible with your scripts if they are built for the orignal version 2.0 or higher ⚠️
+# ⚠️ This was forked from an earlier version of nerohiro's nh-context so it won't be compatible with your scripts if they are built for the original version 2.0 or higher ⚠️
