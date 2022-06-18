@@ -88,3 +88,5 @@ RegisterServerEvent('nh-context:testMenu2', function(data)
     print('THIS IS PRINTED ON THE SERVER CONSOLE!!!')
 end)
 ```
+
+⚠️ This was forked from an earlier version of nerohiro's nh-context so it won't be compatible with your scripts if they are using the orignal version 1.1 or higher ⚠️
