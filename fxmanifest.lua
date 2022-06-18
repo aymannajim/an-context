@@ -1,8 +1,8 @@
 fx_version "cerulean"
-game "common"
+game "gta5"
 
 name "NUI Context Menu"
-description "A modular context Menu for RedM and FiveM"
+description "A modular context Menu for FiveM | Modified by aymannajim"
 author "NeroHiro"
 
 ui_page "./ui/index.html"
@@ -14,4 +14,3 @@ files{
 }
 
 client_script "client.lua"
-
