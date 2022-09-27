@@ -48,12 +48,12 @@ $(document).click(function(event){
 })
 
 const PostData = (id) => {
-    $.post(`https://nh-context/dataPost`, JSON.stringify(Button[id]))
+    $.post(`https://an-context/dataPost`, JSON.stringify(Button[id]))
     return CloseMenu();
 }
 
 const CancelMenu = () => {
-    $.post(`https://nh-context/cancel`)
+    $.post(`https://an-context/cancel`)
     return CloseMenu();
 }
 

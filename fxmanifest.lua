@@ -1,9 +1,9 @@
 fx_version "cerulean"
 game "gta5"
 
-name "NUI Context Menu"
-description "A modular context Menu for FiveM | Modified by aymannajim"
-author "NeroHiro"
+name "AN Context Menu"
+description "A modular context Menu for FiveM"
+author "NeroHiro & aymannajim"
 
 ui_page "./ui/index.html"
 

@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300,400,500,600,700&display=swap');
 
 * {
     padding: 0;
     margin: 0;
+    user-select: none;
 }
 
 #container {
@@ -38,6 +39,7 @@ body::-webkit-scrollbar {
     width: auto;
     max-width: 45%;
     height: 10%;
+    cursor: pointer;
     background: #282828;
     margin: auto;
     position: relative;
@@ -51,7 +53,7 @@ body::-webkit-scrollbar {
     box-shadow: 0.0rem 0.0rem 0.1rem 0.05rem #000000;
 }
 
-.button:hover{
+.button:hover {
     background-color: #F6102E;
 }
 
@@ -59,9 +61,9 @@ body::-webkit-scrollbar {
     color: #fff;
     flex-direction: column;
     font-family: 'Rajdhani', sans-serif;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     overflow: hidden;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 .button > .header {
@@ -74,7 +76,7 @@ body::-webkit-scrollbar {
     overflow: wrap;
     color:  #fff;
     font-family: 'Rajdhani', sans-serif;
-    font-size: 0.95rem;
+    font-size: 1.02rem;
     overflow: hidden;
-    font-weight: 500;
+    font-weight: 700;
 }
