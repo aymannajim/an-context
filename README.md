@@ -1,6 +1,8 @@
 ## Description
 Same nh-context but with the ability to trigger client and server events, some minor ui redesign, added font-awesome support and made compatible with [ESX] Gangs System
 
+[![Join my Discord](https://img.shields.io/discord/784961984021266492?color=5865f2&label=Discord&logo=https%3A%2F%2Fi.imgur.com%2Ftt5au4m.png&style=for-the-badge)](https://discord.gg/f2Nbv9Ebf5)
+
 **So basically, I added a third argument in the main script event ( nh-context:sendMenu ), when this is set to false or not called, it makes the script call the events  on the client side ( just like the original nh-context ), but when  set to true, it makes the script triggers the events on the server-side.**
 
 ## Screenshots
